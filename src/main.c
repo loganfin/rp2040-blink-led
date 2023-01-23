@@ -14,20 +14,19 @@ int main()
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
     while (true) {
-        if (counter < 3) {
+        if (counter == 0) {
             wait_ms = dot_ms;
         }
-        else if (counter < 6) {
+        else if (counter == 3) {
             wait_ms = dash_ms;
-        }
-        else {
-            counter = 0;
-            continue;
         }
         gpio_put(LED_PIN, 1);
         sleep_ms(wait_ms);
         gpio_put(LED_PIN, 0);
         sleep_ms(wait_ms);
         counter++;
+        if (counter > 5) {
+            counter = 0;
+        }
     }
 }
