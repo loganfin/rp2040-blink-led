@@ -12,3 +12,6 @@ _deps
 
 build/
 .cache
+
+# This file should be copied from the User's PICO_SDK_PATH
+pico_sdk_import.cmake
