@@ -6,9 +6,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 # If PICO_SDK_PATH is defined on the user's system, use that. Else, use the git submodule included in this repo
 if(DEFINED ENV{PICO_SDK_PATH})
-    message(STATUS "Copying $ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake to ${CMAKE_SOURCE_DIR}")
-    file(COPY $ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake
-        DESTINATION ${CMAKE_SOURCE_DIR})
+    if(NOT EXISTS ${CMAKE_SOURCE_DIR}/pico_sdk_import.cmake)
+        message("Copying $ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake to ${CMAKE_SOURCE_DIR}")
+        file(COPY $ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake
+            DESTINATION ${CMAKE_SOURCE_DIR})
+    endif()
     include(pico_sdk_import.cmake)
 else()
     if(EXISTS ${CMAKE_SOURCE_DIR}/lib/pico-sdk/pico_sdk_init.cmake)

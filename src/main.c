@@ -1,4 +1,3 @@
-#include "boards/adafruit_feather_rp2040.h"
 #include "pico/stdlib.h"
 
 #define LED_PIN PICO_DEFAULT_LED_PIN
